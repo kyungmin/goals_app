@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Goals App</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+	<h1 id="branding">
+		<%= link_to "Goals App", root_url %>
+	</h1>
+	<span class="user-meta">
+		<% if current_user %>
+			Welcome <%= current_user.email %>
+			<%= link_to "Sign Out", signout_url %>
+		<% else %>
+			<%= link_to "Sign Up", signup_url %> |
+			<%= link_to "Sign In", signin_url %>
+		<% end %>
+	</span>
+</header>
+
+<div id="content">
+	<div class="alert">
+		<% flash.each do |name, messages| %>
+			<% messages.each do |message| %>
+			<%= content_tag :div, message, class: name %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= yield %>
+</div>
+<footer></footer>
+</body>
+</html>

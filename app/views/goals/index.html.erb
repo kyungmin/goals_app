@@ -1,0 +1,6 @@
+<h1>Goals</h1>
+<ul class="goal-list">
+<% @goals.each do |goal| %>
+  <li class="goal-list-item"><%= link_to goal.name, user_goal_url(goal.user, goal) %></li>
+<% end %>
+<ul>

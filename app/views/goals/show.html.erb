@@ -1,0 +1,14 @@
+<% if @goal.privacy == "public" || current_user == @goal.user %>
+
+  <h1>Goal: <%= @goal.name %></h1>
+  <p>Status: <%= status(@goal) %></p>
+  <p>Privacy: <%= @goal.privacy.capitalize %></p>
+<% else %>
+  <h1>Error</h1>
+  <p>You don't have permission to view this goal.</p>
+<% end %>
+
+<% if current_user == @goal.user %>
+  <%= link_to "Edit", edit_user_goal_url(@goal) %>
+  <%= link_to "Delete", user_goal_url(@goal), { method: :delete } %>
+<% end %>
